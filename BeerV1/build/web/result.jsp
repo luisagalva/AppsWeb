@@ -14,6 +14,23 @@
     </head>
     <body>
         <h1>Beer Recommendations JSP</h1>
+        <form method="post" action="SelectBeer.do">
+            <p>Select beer characteristics</p>
+            Color:
+            <select name="color" size="1">
+                <option value="light"> light </option>
+                <option value="amber"> amber </option><!---->
+                <option value="brown"> brown </option>
+                <option value="dark"> dark </option>
+            </select>
+            <select name="background" size="1">
+                <option value="white"> blanco </option>
+                <option value="black"> negro </option><!---->
+                <option value="red"> rojo </option>
+                <option value="gray"> gris </option>
+            </select>
+            <input type="submit">
+        </form>
         <p>
             <%
                 List styles = (List)request.getAttribute("styles");
@@ -24,6 +41,10 @@
         %>
             
         </p>
+        <%
+            out.print("<p style=\"background-color:"+request.getAttribute("background")+";\"> " + request.getAttribute("background") + "</p>"); 
+        %>
+      
         
     </body>
 </html>

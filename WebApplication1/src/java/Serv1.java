@@ -4,10 +4,7 @@
  */
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.PrintWriter;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,8 +15,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author PC
  */
-@WebServlet(urlPatterns = {"/sendpdf"})
-public class sendpdf extends HttpServlet {
+@WebServlet(urlPatterns = {"/Serv1"})
+public class Serv1 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,16 +35,15 @@ public class sendpdf extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet sendpdf</title>");            
+            out.println("<title>Servlet Serv1</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet sendpdf at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet Serv1 at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
     }
 
-  
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -60,29 +56,7 @@ public class sendpdf extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //define el tipo de informacion que envia el cliente
-        response.setContentType("application/pdf");
-        //setHeader("content-type", "text/html");
-        //Los valores que coloques en el encabezado son utilizados por el navegador para saber cómo mostrar la información.
-        ServletContext ctx = getServletContext();
-        
-        //instanciamos el inputStream para leer el archivo a enviar
-        InputStream is = ctx.getResourceAsStream("C:\\Users\\PC\\Downloads\\6.1.pdf");
-        int read = 0;
-        byte[] bytes = new byte[1024];
-        
-        //olbjeto que pondra el archivo en el objeto response
-        OutputStream os = response.getOutputStream();
-        
-        //se transfiere el archivo del objeto del input al output stream
-        while((read = is.read(bytes)) !=-1){
-            os.write(bytes, 0, read);
-            
-        //métodos para que un servlet redireccione o solicite el proceso por otro elemento:
-        //response.sendRedirect("https://tecmilenio.mx");
-        
-        
-        }
+        processRequest(request, response);
     }
 
     /**

@@ -58,7 +58,20 @@ public class BeerSelect extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet BeerSelect</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet BeerSelect at " + request.getParameter("background") + "</h1>");
+             out.println("<p style=\"background-color:"+ request.getAttribute("background") +";\"> " + request.getAttribute("background") + "</p>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     /**
@@ -75,8 +88,10 @@ public class BeerSelect extends HttpServlet {
         String c = request.getParameter("color");
         BeerExpert be = new BeerExpert();
         List result = be.getBrands(c);
+        String background = request.getParameter("background");
         
         request.setAttribute("styles", result);
+        request.setAttribute("background", background);
         RequestDispatcher view = request.getRequestDispatcher("result.jsp");
         view.forward(request, response);
     }
