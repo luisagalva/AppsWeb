@@ -38,6 +38,8 @@
                 while(it.hasNext()){
                     out.print("<br>try:" + it.next());
                 }
+                String email = getServletContext().getInitParameter("email");
+                out.println("<br>try:" + email);
         %>
             
         </p>

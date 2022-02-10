@@ -8,10 +8,18 @@
     <servlet>
         <servlet-name>BeerSelect</servlet-name>
         <servlet-class>com.example.web.BeerSelect</servlet-class>
+        <init-param>
+            <param-name>email</param-name>
+            <param-value>luisa.garcia@tecmilenio.mx</param-value> 
+        </init-param>
     </servlet>
     <servlet-mapping>
         <servlet-name>BeerSelect</servlet-name>
         <url-pattern>/SelectBeer.do</url-pattern>
     </servlet-mapping>
+    <context-param>
+        <param-name>email</param-name>
+        <param-value>luisa.garcia@tecmilenio.mx</param-value> 
+    </context-param>
 </web-app>
     
