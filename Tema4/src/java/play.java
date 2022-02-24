@@ -70,6 +70,7 @@ public class play extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        
         int seleccionUser = 1;
         Juego juego = new Juego(seleccionUser);
         int seleccionServer = juego.getComp();

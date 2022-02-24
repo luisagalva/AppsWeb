@@ -4,6 +4,7 @@
     Author     : PC
 --%>
 
+<%@page import="javax.servlet.http.Cookie"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.*"%>
 <!DOCTYPE html>
@@ -40,6 +41,15 @@
                 }
                 String email = getServletContext().getInitParameter("email");
                 out.println("<br>try:" + email);
+                
+                Cookie[] cookies = request.getCookies();
+                
+                    List alcookies = Arrays.asList(cookies);
+                    for(Cookie cook : cookies){
+                        if(cook.getName().equals("visitas")){
+                            out.println("<br>visitas:" + cook.getValue());
+                        }
+                    }
         %>
             
         </p>

@@ -14,6 +14,9 @@ import java.util.*;
 import javax.servlet.RequestDispatcher;
 import com.example.model.*;
 import static java.lang.System.out;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 /**
  *
@@ -92,6 +95,25 @@ public class BeerSelect extends HttpServlet {
         String background = request.getParameter("background");
         
         out.println(getServletConfig().getInitParameter("email"));
+        
+        HttpSession session = request.getSession();
+        Cookie visitascookie;
+        if(!session.isNew()){
+            Cookie[] cookies = request.getCookies();
+            List alcookies = Arrays.asList(cookies);
+            visitascookie = new Cookie("visitas", "10");
+            for(Cookie cook : cookies){
+                if(cook.getName().equals("visitas")){
+                    visitascookie = cook;
+                }
+            }
+            Integer visitascount = Integer.parseInt( visitascookie.getValue()) + 1;
+            visitascookie.setValue(visitascount.toString());
+        }else{
+            visitascookie = new Cookie("visitas", "10");
+        }
+        
+        response.addCookie(visitascookie);
         
         request.setAttribute("styles", result);
         request.setAttribute("background", background);
